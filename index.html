@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio - Shivam Prakash</title>
+  <link rel="icon" type="image/png" href="favicon.ico.png" />
+  <link rel="shortcut icon" type="image/png" href="favicon.ico.png" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+  <!-- Aurora background canvas (global) -->
+  <canvas id="auroraCanvas"></canvas>
+
+  <!-- Custom cursor -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-trail" id="cursorTrail"></div>
+
+  <!-- ── NAVBAR ─────────────────────────────────────────────── -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo">
+        <span class="logo-prompt">~/</span><span class="logo-name">Portfolio</span><span class="logo-caret">▋</span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about"   class="nav-link"><span class="link-num">01.</span> about</a></li>
+        <li><a href="#skills"  class="nav-link"><span class="link-num">02.</span> skills</a></li>
+        <li><a href="#projects"class="nav-link"><span class="link-num">03.</span> projects</a></li>
+        <li><a href="#contact" class="nav-link"><span class="link-num">04.</span> contact</a></li>
+      </ul>
+      <div class="nav-right">
+        <button class="theme-toggle ripple" id="themeToggle" aria-label="Toggle theme">
+          <i class="fa-solid fa-moon"  id="iconMoon"></i>
+          <i class="fa-solid fa-sun"   id="iconSun"></i>
+        </button>
+        <a href="My Resume.pdf" class="btn btn-outline btn-sm ripple" download="My Resume.pdf">
+          <i class="fa-solid fa-file-code"></i> Resume/ CV
+        </a>
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ── HERO ──────────────────────────────────────────────── -->
+  <section class="hero" id="hero">
+    <canvas class="hero-canvas" id="heroCanvas" aria-hidden="true"></canvas>
+    <div class="hero-inner">
+      <!-- Terminal window -->
+      <div class="terminal-window">
+        <div class="terminal-bar">
+          <span class="t-btn t-close"></span>
+          <span class="t-btn t-min"></span>
+          <span class="t-btn t-max"></span>
+          <span class="t-title">bash — shivam@portfolio: ~</span>
+        </div>
+        <div class="terminal-body" id="terminalBody">
+          <!-- filled by JS boot sequence -->
+        </div>
+      </div>
+
+      <!-- Right: headline -->
+      <div class="hero-headline">
+        <p class="hero-pre">Hello, World. I'm</p>
+        <h1 class="hero-name">Shivam<br><span class="name-accent">Prakash</span></h1>
+        <div class="hero-role-line">
+          <span class="role-bracket">&lt;</span>
+          <span id="typedRole" class="typed-text"></span>
+          <span class="typed-cursor">_</span>
+          <span class="role-bracket">/&gt;</span>
+        </div>
+        <p class="hero-bio">
+          Every great project begins with a problem, and more often than not, that problem is hidden beneath layers of noisy, fragmented data. 
+        </p>
+        <div class="hero-actions">
+          <a href="#projects" class="btn btn-primary ripple">
+            <i class="fa-solid fa-terminal"></i> View my work
+          </a>
+          <a href="#contact" class="btn btn-ghost ripple">
+            <i class="fa-solid fa-paper-plane"></i> Say hello
+          </a>
+        </div>
+        <div class="hero-socials">
+          <a href="https://github.com/ShivamSolves" class="soc-link ripple" aria-label="GitHub" target="_blank"><i class="fa-brands fa-github"></i></a>
+          <a href="https://www.linkedin.com/in/shivam-prakash-200537255/" class="soc-link ripple" aria-label="LinkedIn" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="mailto:shivamprakash.official2004@gmail.com" class="soc-link ripple" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        </div>
+      </div>
+    </div>
+    <a href="#about" class="scroll-hint" aria-label="Scroll">
+      <span class="scroll-line"></span>
+      <span class="scroll-text">scroll</span>
+    </a>
+  </section>
+
+  <!-- ── ABOUT ─────────────────────────────────────────────── -->
+  <section class="section about" id="about">
+    <div class="container">
+      <div class="sec-label reveal"><span class="sec-num">01</span><span class="sec-slash">/</span> about_me</div>
+
+      <div class="about-grid">
+        <!-- Left: avatar pane -->
+        <div class="about-left reveal">
+          <div class="avatar-shell">
+            <div class="avatar-code-ring">
+              <svg viewBox="0 0 200 200" class="ring-svg">
+                <circle cx="100" cy="100" r="90" class="ring-track"/>
+                <circle cx="100" cy="100" r="90" class="ring-progress" id="ringProgress"/>
+              </svg>
+            </div>
+            <div class="avatar-core">
+              <img src="365d85622afa408296254bd18f95e3bd.jpg" alt="Your Name" class="avatar-photo" />
+            </div>
+            <div class="avatar-tag tag-tl"><i class="fa-solid fa-code"></i> B.tech Graduate</div>
+          </div>
+          <!-- Stat tiles -->
+          <div class="stat-row">
+            <div class="stat-tile">
+              <div class="stat-slot" data-target="4">
+                <div class="stat-slot-track">
+                  <span class="stat-slot-num">0</span>
+                </div>
+                <span class="stat-suffix">+</span>
+              </div>
+              <span class="stat-l">Projects</span>
+            </div>
+            <div class="stat-tile">
+              <div class="stat-slot" data-target="3">
+                <div class="stat-slot-track">
+                  <span class="stat-slot-num">0</span>
+                </div>
+                <span class="stat-suffix">+</span>
+              </div>
+              <span class="stat-l">Yrs Coding</span>
+            </div>
+            <div class="stat-tile">
+              <div class="stat-slot" data-target="10">
+                <div class="stat-slot-track">
+                  <span class="stat-slot-num">0</span>
+                </div>
+                <span class="stat-suffix">+</span>
+              </div>
+              <span class="stat-l">Tech Stack</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: text pane styled as a code comment block -->
+        <div class="about-right reveal">
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-lang">about.ts</span>
+              <div class="code-dots"><span></span><span></span><span></span></div>
+            </div>
+            <div class="code-lines">
+              <p><span class="c-kw">const</span> <span class="c-var">me</span> <span class="c-op">=</span> <span class="c-punc">{</span></p>
+              <p class="ind"><span class="c-key">name</span><span class="c-punc">:</span> <span class="c-str">"Shivam Prakash"</span><span class="c-punc">,</span></p>
+              <p class="ind"><span class="c-key">role</span><span class="c-punc">:</span> <span class="c-str">"Computer Science Engineering Graduate (First Division with Honours)"</span><span class="c-punc">,</span></p>
+              <p class="ind"><span class="c-key">location</span><span class="c-punc">:</span> <span class="c-str">"Bhopal, India"</span><span class="c-punc">,</span></p>
+              <p class="ind"><span class="c-key">available</span><span class="c-punc">:</span> <span class="c-bool">true</span><span class="c-punc">,</span></p>
+              <p class="ind c-comment">// I build from concept to deployment</p>
+              <p class="ind"><span class="c-key">passion</span><span class="c-punc">:</span> <span class="c-str">"clean code + bold ideas"</span></p>
+              <p><span class="c-punc">}</span></p>
+            </div>
+            <div class="code-divider"></div>
+            <div class="about-prose">
+              <p>
+                I'm a passionate computer science engineer who believes in writing code that not only
+                works, but is elegant, maintainable, and purposeful. I enjoy the full breadth of
+                software — from low-level systems to polished user interfaces.
+              </p>
+              <p>
+                My philosophy: <strong>understand the problem deeply before touching the keyboard.</strong>
+                Whether it's a side project or a production system, I bring the same level of care and
+                curiosity to every line I write.
+              </p>
+            </div>
+            <a href="My Resume.pdf" class="btn btn-primary ripple" download="My Resume.pdf">
+              <i class="fa-solid fa-download"></i> Download CV
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SKILLS ────────────────────────────────────────────── -->
+  <section class="section skills" id="skills">
+    <canvas class="sec-canvas" id="skillsCanvas" aria-hidden="true"></canvas>
+    <div class="container" style="position:relative;z-index:2">
+      <div class="sec-label reveal"><span class="sec-num">02</span><span class="sec-slash">/</span> skills_&amp;_tools</div>
+
+      <div class="skills-layout">
+        <!-- Tab switcher -->
+        <div class="skills-sidebar reveal">
+          <button class="stab active ripple" data-tab="languages">
+            <i class="fa-solid fa-code"></i><span>Languages</span>
+          </button>
+          <button class="stab ripple" data-tab="frameworks">
+            <i class="fa-solid fa-cubes"></i><span>Frameworks</span>
+          </button>
+          <button class="stab ripple" data-tab="tools">
+            <i class="fa-solid fa-screwdriver-wrench"></i><span>Tools</span>
+          </button>
+        </div>
+
+        <!-- Panels -->
+        <div class="skills-content">
+          <!-- Languages -->
+          <div class="spanel active" id="tab-languages">
+            <div class="skill-grid">
+              <div class="skcard reveal" data-level="90"><div class="skcard-icon"><i class="fa-brands fa-python"></i></div><div class="skcard-info"><span class="skcard-name">Python</span><div class="skbar"><div class="skfill"></div><span class="sklevel">90%</span></div></div></div>
+              <div class="skcard reveal" data-level="80"><div class="skcard-icon"><i class="fa-brands fa-js"></i></div><div class="skcard-info"><span class="skcard-name">JavaScript</span><div class="skbar"><div class="skfill"></div><span class="sklevel">80%</span></div></div></div>
+              <div class="skcard reveal" data-level="75"><div class="skcard-icon"><i class="fa-solid fa-c"></i></div><div class="skcard-info"><span class="skcard-name">C / C++</span><div class="skbar"><div class="skfill"></div><span class="sklevel">75%</span></div></div></div>
+              <div class="skcard reveal" data-level="70"><div class="skcard-icon"><i class="fa-brands fa-java"></i></div><div class="skcard-info"><span class="skcard-name">Java</span><div class="skbar"><div class="skfill"></div><span class="sklevel">70%</span></div></div></div>
+              <div class="skcard reveal" data-level="85"><div class="skcard-icon"><i class="fa-brands fa-html5"></i></div><div class="skcard-info"><span class="skcard-name">HTML / CSS</span><div class="skbar"><div class="skfill"></div><span class="sklevel">85%</span></div></div></div>
+              <div class="skcard reveal" data-level="65"><div class="skcard-icon"><i class="fa-solid fa-database"></i></div><div class="skcard-info"><span class="skcard-name">SQL</span><div class="skbar"><div class="skfill"></div><span class="sklevel">65%</span></div></div></div>
+            </div>
+          </div>
+          <!-- Frameworks -->
+          <div class="spanel" id="tab-frameworks">
+            <div class="skill-grid">
+              <div class="skcard reveal" data-level="80"><div class="skcard-icon"><i class="fa-brands fa-react"></i></div><div class="skcard-info"><span class="skcard-name">React</span><div class="skbar"><div class="skfill"></div><span class="sklevel">80%</span></div></div></div>
+              <div class="skcard reveal" data-level="75"><div class="skcard-icon"><i class="fa-brands fa-node-js"></i></div><div class="skcard-info"><span class="skcard-name">Node.js</span><div class="skbar"><div class="skfill"></div><span class="sklevel">75%</span></div></div></div>
+              <div class="skcard reveal" data-level="70"><div class="skcard-icon"><i class="fa-solid fa-flask-vial"></i></div><div class="skcard-info"><span class="skcard-name">Flask / Django</span><div class="skbar"><div class="skfill"></div><span class="sklevel">70%</span></div></div></div>
+              <div class="skcard reveal" data-level="60"><div class="skcard-icon"><i class="fa-solid fa-server"></i></div><div class="skcard-info"><span class="skcard-name">Express.js</span><div class="skbar"><div class="skfill"></div><span class="sklevel">60%</span></div></div></div>
+            </div>
+          </div>
+          <!-- Tools -->
+          <div class="spanel" id="tab-tools">
+            <div class="skill-grid">
+              <div class="skcard reveal" data-level="85"><div class="skcard-icon"><i class="fa-brands fa-git-alt"></i></div><div class="skcard-info"><span class="skcard-name">Git / GitHub</span><div class="skbar"><div class="skfill"></div><span class="sklevel">85%</span></div></div></div>
+              <div class="skcard reveal" data-level="70"><div class="skcard-icon"><i class="fa-brands fa-docker"></i></div><div class="skcard-info"><span class="skcard-name">Docker</span><div class="skbar"><div class="skfill"></div><span class="sklevel">70%</span></div></div></div>
+              <div class="skcard reveal" data-level="65"><div class="skcard-icon"><i class="fa-brands fa-linux"></i></div><div class="skcard-info"><span class="skcard-name">Linux</span><div class="skbar"><div class="skfill"></div><span class="sklevel">65%</span></div></div></div>
+              <div class="skcard reveal" data-level="60"><div class="skcard-icon"><i class="fa-solid fa-cloud"></i></div><div class="skcard-info"><span class="skcard-name">Cloud (AWS / GCP)</span><div class="skbar"><div class="skfill"></div><span class="sklevel">60%</span></div></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PROJECTS ──────────────────────────────────────────── -->
+  <section class="section projects" id="projects">
+    <canvas class="sec-canvas" id="projectsCanvas" aria-hidden="true"></canvas>
+    <div class="container" style="position:relative;z-index:2">
+      <div class="sec-label reveal"><span class="sec-num">03</span><span class="sec-slash">/</span> projects</div>
+
+      <div class="proj-filters reveal">
+        <button class="pfilt active ripple" data-filter="all">all</button>
+        <button class="pfilt ripple" data-filter="web">web</button>
+        <button class="pfilt ripple" data-filter="systems">systems</button>
+        <button class="pfilt ripple" data-filter="ml">ml / ai</button>
+      </div>
+
+      <div class="proj-grid" id="projectsGrid">
+
+        <article class="pcard reveal" data-category="web">
+          <div class="pcard-top">
+            <div class="pcard-icons">
+              <i class="fa-solid fa-folder-open pcard-folder"></i>
+              <div class="pcard-links">
+                <a href="#" aria-label="GitHub" class="ripple"><i class="fa-brands fa-github"></i></a>
+                <a href="#" aria-label="Live" class="ripple"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+              </div>
+            </div>
+            <span class="pcard-status s-done">● completed</span>
+          </div>
+          <h3 class="pcard-title">Project Alpha</h3>
+          <p class="pcard-desc">A full-stack web application — replace this with your actual project description. Describe what problem it solves.</p>
+          <div class="pcard-tags">
+            <span>React</span><span>Node.js</span><span>MongoDB</span>
+          </div>
+        </article>
+
+        <article class="pcard reveal" data-category="systems">
+          <div class="pcard-top">
+            <div class="pcard-icons">
+              <i class="fa-solid fa-folder-open pcard-folder"></i>
+              <div class="pcard-links">
+                <a href="#" aria-label="GitHub" class="ripple"><i class="fa-brands fa-github"></i></a>
+                <a href="#" aria-label="Live" class="ripple"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+              </div>
+            </div>
+            <span class="pcard-status s-wip">◐ in progress</span>
+          </div>
+          <h3 class="pcard-title">Project Beta</h3>
+          <p class="pcard-desc">A systems-level project — highlight the technical challenges and your approach to solving them.</p>
+          <div class="pcard-tags">
+            <span>C++</span><span>Linux</span><span>Networking</span>
+          </div>
+        </article>
+
+        <article class="pcard reveal" data-category="ml">
+          <div class="pcard-top">
+            <div class="pcard-icons">
+              <i class="fa-solid fa-folder-open pcard-folder"></i>
+              <div class="pcard-links">
+                <a href="#" aria-label="GitHub" class="ripple"><i class="fa-brands fa-github"></i></a>
+                <a href="#" aria-label="Live" class="ripple"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+              </div>
+            </div>
+            <span class="pcard-status s-plan">○ planned</span>
+          </div>
+          <h3 class="pcard-title">Project Gamma</h3>
+          <p class="pcard-desc">An ML / AI project — explain the model, dataset, and real-world application you're targeting.</p>
+          <div class="pcard-tags">
+            <span>Python</span><span>PyTorch</span><span>Pandas</span>
+          </div>
+        </article>
+
+        <article class="pcard reveal" data-category="web">
+          <div class="pcard-top">
+            <div class="pcard-icons">
+              <i class="fa-solid fa-folder-open pcard-folder"></i>
+              <div class="pcard-links">
+                <a href="#" aria-label="GitHub" class="ripple"><i class="fa-brands fa-github"></i></a>
+                <a href="#" aria-label="Live" class="ripple"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+              </div>
+            </div>
+            <span class="pcard-status s-plan">○ planned</span>
+          </div>
+          <h3 class="pcard-title">Project Delta</h3>
+          <p class="pcard-desc">Another project slot — keep the description concise but informative. What's the stack? What problem does it solve?</p>
+          <div class="pcard-tags">
+            <span>TypeScript</span><span>Next.js</span><span>PostgreSQL</span>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CONTACT ───────────────────────────────────────────── -->
+  <section class="section contact" id="contact">
+    <canvas class="sec-canvas" id="contactCanvas" aria-hidden="true"></canvas>
+    <div class="container" style="position:relative;z-index:2">
+      <div class="sec-label reveal"><span class="sec-num">04</span><span class="sec-slash">/</span> contact</div>
+
+      <div class="contact-grid">
+        <div class="contact-left reveal">
+          <h2 class="contact-heading">Let's build<br>something <span class="hl">together.</span></h2>
+          <p class="contact-sub">
+            Open to full-time roles, freelance work, and interesting collaborations.
+            Drop me a message — I respond within 24 hours.
+          </p>
+          <div class="contact-links">
+            <a href="mailto:shivamprakash.official2004@gmail.com" class="c-link">
+              <i class="fa-solid fa-envelope"></i>
+              <span>shivamprakash.official2004@gmail.com</span>
+            </a>
+            <a href="https://github.com/ShivamSolves" class="c-link" target="_blank">
+              <i class="fa-brands fa-github"></i>
+              <span>github.com/ShivamSolves</span>
+            </a>
+            <a href="https://www.linkedin.com/in/shivam-prakash-200537255/" class="c-link">
+              <i class="fa-brands fa-linkedin-in"></i>
+              <span>linkedin.com/Shivam Prakash</span>
+            </a>
+          </div>
+          <div class="avail-badge">
+            <span class="avail-dot"></span> Available for opportunities
+          </div>
+        </div>
+
+        <form class="contact-form reveal" id="contactForm" novalidate>
+          <div class="form-row">
+            <div class="fg">
+              <label for="name">name</label>
+              <input type="text"  id="name"  name="name"  placeholder="Your Name"          required />
+              <span class="ferr" id="nameError"></span>
+            </div>
+            <div class="fg">
+              <label for="email">email</label>
+              <input type="email" id="email" name="email" placeholder="you@example.com"    required />
+              <span class="ferr" id="emailError"></span>
+            </div>
+          </div>
+          <div class="fg">
+            <label for="subject">subject</label>
+            <input type="text" id="subject" name="subject" placeholder="What's this about?" required />
+            <span class="ferr" id="subjectError"></span>
+          </div>
+          <div class="fg">
+            <label for="message">message</label>
+            <textarea id="message" name="message" rows="5" placeholder="Tell me about your project…" required></textarea>
+            <span class="ferr" id="messageError"></span>
+          </div>
+          <button type="submit" class="btn btn-primary ripple btn-full" id="submitBtn">
+            <span class="btn-label"><i class="fa-solid fa-paper-plane"></i> send_message()</span>
+            <span class="btn-loader"><i class="fa-solid fa-spinner fa-spin"></i> sending…</span>
+          </button>
+          <div class="form-success" id="formSuccess">
+            <i class="fa-solid fa-circle-check"></i> Message sent! I'll reply shortly.
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ────────────────────────────────────────────── -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <span class="footer-logo"><span class="logo-prompt">~/</span>Portfolio</span>
+        <nav class="footer-nav">
+          <a href="#about">about</a>
+          <a href="#skills">skills</a>
+          <a href="#projects">projects</a>
+          <a href="#contact">contact</a>
+        </nav>
+        <p class="footer-copy">
+          <span class="c-comment">// designed &amp; built by</span> <span class="hl">Shivam Prakash</span> — <span id="year"></span>
+        </p>
+      </div>
+    </div>
+    <button class="back-top ripple" id="backToTop" aria-label="Back to top">
+      <i class="fa-solid fa-arrow-up"></i>
+    </button>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
