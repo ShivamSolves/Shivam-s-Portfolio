@@ -41,25 +41,12 @@ function initTheme() {
 
 /* ── 1. CUSTOM CURSOR ──────────────────────────────────────── */
 function initCursor() {
-  const dot   = document.getElementById('cursor');
-  const trail = document.getElementById('cursorTrail');
-  if (!dot || !trail) return;
-  let tx = 0, ty = 0;
+  const dot = document.getElementById('cursor');
+  if (!dot) return;
   document.addEventListener('mousemove', e => {
-    dot.style.left   = e.clientX + 'px';
-    dot.style.top    = e.clientY + 'px';
-    tx = e.clientX; ty = e.clientY;
+    dot.style.left = e.clientX + 'px';
+    dot.style.top  = e.clientY + 'px';
   });
-  // Trail lags behind with lerp
-  let cx = 0, cy = 0;
-  function lerp() {
-    cx += (tx - cx) * 0.14;
-    cy += (ty - cy) * 0.14;
-    trail.style.left = cx + 'px';
-    trail.style.top  = cy + 'px';
-    requestAnimationFrame(lerp);
-  }
-  lerp();
 }
 
 /* ── 2. SVG RING GRADIENT ──────────────────────────────────── */

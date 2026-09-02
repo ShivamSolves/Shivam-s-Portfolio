@@ -124,22 +124,9 @@ body {
   box-shadow: var(--glow-g);
   transition: transform 0.08s var(--ease), background 0.2s, width 0.2s, height 0.2s;
 }
-.cursor-trail {
-  position: fixed; top: 0; left: 0;
-  width: 28px; height: 28px;
-  border: 1.5px solid var(--green-dim);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 9998;
-  transform: translate(-50%,-50%);
-  transition: left 0.10s var(--ease), top 0.10s var(--ease),
-              border-color 0.2s, width 0.2s, height 0.2s;
-}
 body:has(a:hover) .cursor,
 body:has(button:hover) .cursor { width: 18px; height: 18px; background: var(--cyan); box-shadow: var(--glow-c); }
-body:has(a:hover) .cursor-trail,
-body:has(button:hover) .cursor-trail { width: 44px; height: 44px; border-color: var(--cyan-dim); }
-@media (pointer: coarse) { .cursor, .cursor-trail { display: none; } }
+@media (pointer: coarse) { .cursor { display: none; } }
 
 /* ── TYPOGRAPHY ──────────────────────────────────────────────── */
 h1, h2, h3, h4 { line-height: 1.12; letter-spacing: -0.025em; font-weight: 700; }
@@ -474,7 +461,8 @@ h1, h2, h3, h4 { line-height: 1.12; letter-spacing: -0.025em; font-weight: 700; 
 }
 .hero-name {
   font-size: clamp(2.8rem, 6vw, 4.8rem);
-  font-weight: 800; letter-spacing: -0.04em;
+  font-weight: 800; letter-spacing: 0.05em;
+  text-transform: uppercase;
   line-height: 1.0;
   color: var(--text);
   margin-bottom: 18px;
@@ -726,7 +714,25 @@ h1, h2, h3, h4 { line-height: 1.12; letter-spacing: -0.025em; font-weight: 700; 
 .code-block > .btn { margin: 0 24px 24px; }
 
 /* ── SKILLS ──────────────────────────────────────────────────── */
-.skills { background: var(--bg); overflow: hidden; }
+.skills { background: var(--bg); overflow: hidden; position: relative; }
+
+/* Feather top edge — blends from bg1 (About) into transparent */
+.skills::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 120px;
+  background: linear-gradient(to bottom, var(--bg1) 0%, transparent 100%);
+  pointer-events: none; z-index: 3;
+}
+
+/* Feather bottom edge — blends from transparent into bg1 (Projects) */
+.skills::after {
+  content: '';
+  position: absolute; bottom: 0; left: 0; right: 0;
+  height: 120px;
+  background: linear-gradient(to top, var(--bg1) 0%, transparent 100%);
+  pointer-events: none; z-index: 3;
+}
 
 .skills-layout {
   display: grid;
@@ -822,6 +828,12 @@ h1, h2, h3, h4 { line-height: 1.12; letter-spacing: -0.025em; font-weight: 700; 
   position: absolute; inset: 0;
   width: 100%; height: 100%;
   pointer-events: none; z-index: 0;
+}
+
+/* Skills canvas fades out at top and bottom edges via CSS mask */
+#skillsCanvas {
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 18%, black 82%, transparent 100%);
+  mask-image:         linear-gradient(to bottom, transparent 0%, black 18%, black 82%, transparent 100%);
 }
 
 /* ── PROJECTS ────────────────────────────────────────────────── */
